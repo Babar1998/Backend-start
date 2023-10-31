@@ -1,5 +1,5 @@
 
-const user = [
+const users = [
     { id: 1, name: "Harry" },
     { id: 2, name: "Babar" },
     { id: 3, name: "Rizzy" },
@@ -7,28 +7,28 @@ const user = [
   //Db operations
   module.exports = {
     getUser: () => {
-      return user;
+      return users;
     },
     addUser: (data) => {
       //add new user to the array
-      user.push(data);
-      return user;
+      users.push(data);
+      return users;
     },
 
     updatedUser: (userId, updateUserData) => {
-        let userIndex = user.findIndex((user) => user.id == userId);
+        let userIndex = users.findIndex((user) => user.id == userId);
         if(userIndex !== -1){
             console.log(userIndex);
-            user[userIndex] = updateUserData
-            return user
+            users[userIndex] = updateUserData
+            return users
         }
     },
 
     deleteUser: (userId) => {
-        let userIndex = user.findIndex((user) => user.id == userId);
+        let userIndex = users.findIndex((user) => user.id == userId);
         if (userIndex !== -1){
-            user.splice(userIndex,1);
-            return user ;
+            users.splice(userIndex,1);
+            return users ;
         }
         return null;
     },
