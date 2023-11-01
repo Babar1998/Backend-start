@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var userService = require("../service/userService");
+var userSchema = require("./userSchema")
 
 // Callback Functions
 
@@ -10,21 +11,50 @@ function usersController(req, res, next) {
 }
 
 function addUserController(req, res, next) {
-  const data = req.body;
-  res.send(userService.addUser(data));
+  try {
+    const {error, value} = userSchema.addUser.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const data = userService.addUser(value);
+    return res.send(data);
+  }
+  } catch (error) {
+    res.send(error);
+  }
+  
 }
 
 function updatedUserController(req, res, next) {
-  const userId = req.params.id;
-  const updateUserData = req.body;
-  const updated = userService.updatedUser(userId, updateUserData);
-  res.send(updated);
+  try {
+    const {error, value} = userSchema.updatedUser.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const userId = req.params.id;
+    const updateUserData = req.body;
+    const updated = userService.updatedUser(userId, updateUserData, value);
+    res.send(updated);
+    
+  }
+  } catch (error) {
+    res.send(error);
+  }  
 }
 
 function deleteUserController(req, res, next) {
-  const userId = req.params.id;
-  const deleted = userService.deleteUser(userId);
-  res.send(deleted);
+  try {
+    const {error, value} = userSchema.deleteUser.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const userId = req.params.id;
+    const deleted = userService.deleteUser(userId, value);
+    res.send(deleted);
+  }
+  } catch (error) {
+    res.send(error);
+  }
 }
 
 module.exports = { usersController, addUserController, updatedUserController, deleteUserController };
