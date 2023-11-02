@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var userService = require("../service/userService");
-var userSchema = require("./userSchema")
+var userValidation = require("./userValidation")
 
 // Callback Functions
 
@@ -12,7 +12,7 @@ function usersController(req, res, next) {
 
 function addUserController(req, res, next) {
   try {
-    const {error, value} = userSchema.addUser.validate(req.body)
+    const {error, value} = userValidation.addUser.validate(req.body)
   if(error){
     return res.send(error.details[0].message);
   } else{
@@ -27,7 +27,7 @@ function addUserController(req, res, next) {
 
 function updatedUserController(req, res, next) {
   try {
-    const {error, value} = userSchema.updatedUser.validate(req.body)
+    const {error, value} = userValidation.updatedUser.validate(req.body)
   if(error){
     return res.send(error.details[0].message);
   } else{
@@ -44,7 +44,7 @@ function updatedUserController(req, res, next) {
 
 function deleteUserController(req, res, next) {
   try {
-    const {error, value} = userSchema.deleteUser.validate(req.body)
+    const {error, value} = userValidation.deleteUser.validate(req.body)
   if(error){
     return res.send(error.details[0].message);
   } else{
