@@ -26,7 +26,7 @@ async function addUserController(req, res, next) {
   
 }
 
-function updatedUserController(req, res, next) {
+async function updatedUserController(req, res, next) {
   try {
     const {error, value} = userValidation.updatedUser.validate(req.body)
   if(error){
@@ -34,7 +34,7 @@ function updatedUserController(req, res, next) {
   } else{
     const userId = req.params.id;
     const updateUserData = req.body;
-    const updated = userService.updatedUser(userId, updateUserData, value);
+    const updated = await userService.updatedUser(userId, updateUserData, value);
     res.send(updated);
     
   }
@@ -43,14 +43,14 @@ function updatedUserController(req, res, next) {
   }  
 }
 
-function deleteUserController(req, res, next) {
+async function deleteUserController(req, res, next) {
   try {
     const {error, value} = userValidation.deleteUser.validate(req.body)
   if(error){
     return res.send(error.details[0].message);
   } else{
     const userId = req.params.id;
-    const deleted = userService.deleteUser(userId, value);
+    const deleted = await userService.deleteUser(userId, value);
     res.send(deleted);
   }
   } catch (error) {

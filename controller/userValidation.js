@@ -13,8 +13,8 @@ module.exports={
     }),
     updatedUser: joi.object().keys({
         id: joi.number().required(),
-        firstname: joi.string(),
-        lastname: joi.string(),
+        firstName: joi.string(),
+        lastName: joi.string(),
         email: joi.string().email(),
         password: joi.string(),
     }),
