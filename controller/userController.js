@@ -10,13 +10,14 @@ function usersController(req, res, next) {
   res.send(userService.getUser());
 }
 
-function addUserController(req, res, next) {
+async function addUserController(req, res, next) {
   try {
     const {error, value} = userValidation.addUser.validate(req.body)
   if(error){
     return res.send(error.details[0].message);
   } else{
-    const data = userService.addUser(value);
+    const data = await userService.addUser(value);
+    console.log(data);
     return res.send(data);
   }
   } catch (error) {

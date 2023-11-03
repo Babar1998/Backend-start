@@ -1,17 +1,13 @@
-
-const users = [
-    { id: 1, name: "Harry" },
-    { id: 2, name: "Babar" },
-    { id: 3, name: "Rizzy" },
-  ];
+  const {models} = require("../models")
   //Db operations
   module.exports = {
-    getUser: () => {
+    getUser: async () => {
+      const users = await models.user.findAll();
       return users;
     },
-    addUser: (data) => {
-      //add new user to the array
-      users.push(data);
+    addUser: async(data) => {
+      const users = await models.user.create(data);
+      console.log(users);
       return users;
     },
 
