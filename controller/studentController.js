@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var studentService = require("../service/studentService");
+var studentValidation = require("./studentValidation")
 
 // Callback Functions
 
@@ -9,22 +10,51 @@ function studentsController(req, res, next) {
   res.send(studentService.getStudent());
 }
 
-function addStudentController(req, res, next) {
-  const data = req.body;
-  res.send(studentService.addStudent(data));
+async function addStudentController(req, res, next) {
+  try {
+    const {error, value} = studentValidation.addStudent.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const data = await studentService.addStudent(value);
+    console.log(data);
+    return res.send(data);
+  }
+  } catch (error) {
+    res.send(error);
+  }
 }
 
-function updatedStudentController(req, res, next) {
-  const studentId = req.params.id;
-  const updateStudentData = req.body;
-  const updated = studentService.updatedStudent(studentId, updateStudentData);
-  res.send(updated);
+async function updatedStudentController(req, res, next) {
+  try {
+    const {error, value} = studentValidation.updatedStudent.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const studentId = req.params.id;
+    const updateStudentData = req.body;
+    const updated = await studentService.updatedStudent(studentId, updateStudentData, value);
+    res.send(updated);
+    
+  }
+  } catch (error) {
+    res.send(error);
+  }  
 }
 
-function deleteStudentController(req, res, next) {
-  const studentId = req.params.id;
-  const deleted = studentService.deleteStudent(studentId);
-  res.send(deleted);
+async function deleteStudentController(req, res, next) {
+  try {
+    const {error, value} = studentValidation.deleteStudent.validate(req.body)
+  if(error){
+    return res.send(error.details[0].message);
+  } else{
+    const studentId = req.params.id;
+    const deleted = await studentService.deleteStudent(studentId, value);
+    res.send(deleted);
+  }
+  } catch (error) {
+    res.send(error);
+  }
 }
 
 module.exports = { studentsController, addStudentController, updatedStudentController, deleteStudentController };
