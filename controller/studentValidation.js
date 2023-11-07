@@ -10,7 +10,6 @@ module.exports={
     }),
     deleteStudent: joi.object().keys({
         rollNo: joi.number(),
-        email: joi.string().email()
     }),
     updatedStudent: joi.object().keys({
         rollNo: joi.number().required(),
