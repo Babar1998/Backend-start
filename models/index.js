@@ -7,8 +7,8 @@ const sequelize = require("../common/dbconnection");
 user.hasOne(teacher, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
 teacher.belongsTo(user, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
 
-user.hasOne(student, {onDelete: "CASCADE", })
-student.belongsTo(user, {onDelete: "CASCADE", })
+user.hasOne(student, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
+student.belongsTo(user, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
 
 const models = sequelize.models;
 

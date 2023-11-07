@@ -3,7 +3,7 @@ const {models} = require("../models")
   //Db operations
   module.exports = {
     getStudent: async () => {
-      const students = await models.student.findAll();
+      const students = await models.student.findAll({include: models.user});
       return students;
     },
     addStudent: async(data) => {
@@ -13,7 +13,7 @@ const {models} = require("../models")
     },
 
     updatedStudent: async (studentId, updateStudentData) => {
-      const students = await models.user.findByPk(studentId);
+      const students = await models.student.findByPk(studentId);
     if (students) {
         students.update(updateStudentData);
     }

@@ -6,26 +6,21 @@ const student = sequelize.define('student',{
         autoIncrement: true,
         type: DataTypes.INTEGER,
     },
-    firstName:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    lastName: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     fatherName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email: {
-        unique: true,
-        allowNull: false,
-        type: DataTypes.STRING,
-        validate: {isEmail: true},
-    },
+    
     address: {
         type: DataTypes.STRING,
+        allowNull: false,
+    },
+    semester: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    cgpa: {
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
 },{

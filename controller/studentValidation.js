@@ -2,11 +2,11 @@ const joi = require("joi");
 
 module.exports={
     addStudent: joi.object().keys({
-        firstName: joi.string().required(),
-        lastName: joi.string().optional(),
         fatherName: joi.string().required(),
-        email: joi.string().email().required(),
         address: joi.string().required(),
+        semester: joi.number().required(),
+        cgpa: joi.number().required(),
+        userID: joi.number().required(),
     }),
     deleteStudent: joi.object().keys({
         rollNo: joi.number(),

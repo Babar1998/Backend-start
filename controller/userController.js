@@ -6,8 +6,8 @@ var userValidation = require("./userValidation")
 // Callback Functions
 
 /* GET users listing. */
-function usersController(req, res, next) {
-  res.send(userService.getUser());
+async function usersController(req, res, next) {
+  res.send(await userService.getUser());
 }
 
 async function addUserController(req, res, next) {

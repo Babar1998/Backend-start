@@ -6,8 +6,8 @@ var studentValidation = require("./studentValidation")
 // Callback Functions
 
 /* GET users listing. */
-function studentsController(req, res, next) {
-  res.send(studentService.getStudent());
+async function studentsController(req, res, next) {
+  res.send(await studentService.getStudent());
 }
 
 async function addStudentController(req, res, next) {
