@@ -11,11 +11,11 @@ teacher.belongsTo(user, {onDelete: "CASCADE", foreignKey:{name: "userID", allowN
 user.hasOne(student, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
 student.belongsTo(user, {onDelete: "CASCADE", foreignKey:{name: "userID", allowNull:false, unique: true,},})
 
-student.belongsToMany(course,{through: "student_course", foreignKey:"studentID"})
-course.belongsToMany(student,{through: "student_course", foreignKey:"studentID"})
+student.belongsToMany(course,{through: "student_course",},)
+course.belongsToMany(student,{through: "student_course",},) 
 
-teacher.belongsToMany(course,{through: "teacher_course", foreignKey:"teacherID"})
-course.belongsToMany(teacher,{through: "teacher_course", foreignKey:"teacherID"})
+teacher.belongsToMany(course,{through: "teacher_course",})
+course.belongsToMany(teacher,{through: "teacher_course",})
 
 const models = sequelize.models;
 

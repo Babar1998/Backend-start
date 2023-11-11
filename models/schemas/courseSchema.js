@@ -1,6 +1,5 @@
 const sequelize = require("../../common/dbconnection")
 const { DataTypes } = require("sequelize")
-
 const course = sequelize.define('course',{
     courseId: {
         primaryKey: true,
