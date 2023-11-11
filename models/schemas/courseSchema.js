@@ -2,16 +2,16 @@ const sequelize = require("../../common/dbconnection")
 const { DataTypes } = require("sequelize")
 
 const course = sequelize.define('course',{
-    id: {
+    courseId: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
     },
-    courseTitle: {
+    courseName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    courseCreditHours: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false,
     },

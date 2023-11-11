@@ -1,16 +1,12 @@
 const sequelize = require("../../common/dbconnection")
 const { DataTypes } = require("sequelize")
 const teacher = sequelize.define('teacher', {
-    id: {
+    teacherId: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
     },
-    experience: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-    },
-    department: {
+    specialization: {
         allowNull: false,
         type: DataTypes.STRING,
     },

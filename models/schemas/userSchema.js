@@ -1,18 +1,14 @@
 const sequelize = require("../../common/dbconnection")
 const { DataTypes } = require("sequelize")
 const user = sequelize.define('user',{
-    id: {
+    userId: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
     },
-    firstName:{
+    userName:{
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    lastName: {
-        type: DataTypes.STRING,
-        allowNull: true,
     },
     email: {
         unique: true,
