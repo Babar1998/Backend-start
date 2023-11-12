@@ -10,13 +10,13 @@ const course = sequelize.define('course',{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    courseDescription: {
         type: DataTypes.STRING,
         allowNull: false,
     },
 },{
-    timestamps: true,
+    timestamps: true, 
     paranoid: true,
 })
 
-module.exports = course;
+module.exports = course; 
