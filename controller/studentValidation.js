@@ -16,7 +16,7 @@ module.exports={
         studentId: joi.number().required(),
         courseId: joi.number().required(),
     }),
-    courseByStudent: joi.object().keys({
+    coursesByStudent: joi.object().keys({
         id: joi.number().required(),
     }),
 }

@@ -74,9 +74,9 @@ async function enrollStudentController (req, res, next){
   }
 }
 
-async function courseByStudentController (req, res, next){
+async function coursesByStudentController (req, res, next){
   try {
-    const {error, value} = studentValidation.courseByStudent.validate(
+    const {error, value} = studentValidation.coursesByStudent.validate(
       {id: req.params.id},
       {
         abortEarly: true,
@@ -92,4 +92,4 @@ async function courseByStudentController (req, res, next){
   } catch (error) {}
 }
 
-module.exports = { studentsController, addStudentController, updatedStudentController, deleteStudentController, enrollStudentController, courseByStudentController };
+module.exports = { studentsController, addStudentController, updatedStudentController, deleteStudentController, enrollStudentController, coursesByStudentController };

@@ -12,4 +12,11 @@ module.exports={
         teacherId: joi.number().required(),
         specialization: joi.string(),
     }),
+    registerTeacher: joi.object().keys({
+        teacherId: joi.number().required(),
+        courseId: joi.number().required(),
+    }),
+    coursesByTeacher: joi.object().keys({
+        id: joi.number().required(),
+    }),
 }
