@@ -6,10 +6,10 @@ module.exports={
         userID: joi.number().required(),
     }),
     deleteTeacher: joi.object().keys({
-        rollNo: joi.number(),
+        teacherId: joi.number(),
     }),
     updatedTeacher: joi.object().keys({
-        id: joi.number().required(),
+        teacherId: joi.number().required(),
         specialization: joi.string(),
     }),
 }

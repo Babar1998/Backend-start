@@ -12,4 +12,11 @@ module.exports={
         studentId: joi.number().required(),
         major: joi.string(),
     }),
+    enrollStudent: joi.object().keys({
+        studentId: joi.number().required(),
+        courseId: joi.number().required(),
+    }),
+    courseByStudent: joi.object().keys({
+        id: joi.number().required(),
+    }),
 }

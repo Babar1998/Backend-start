@@ -57,4 +57,39 @@ async function deleteStudentController(req, res, next) {
   }
 }
 
-module.exports = { studentsController, addStudentController, updatedStudentController, deleteStudentController };
+async function enrollStudentController (req, res, next){
+  try{
+    const {error, value} = studentValidation.enrollStudent.validate(req.body, {
+      abortEarly:false,
+    });
+    if (error) {
+      return res.send(error.details.map((err) => err.message));
+    } else {
+      const {studentId, courseId} = value;
+      const newlyEnrolled = await studentService.enrollStudent(studentId, courseId);
+      return res.send(newlyEnrolled);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+}
+
+async function courseByStudentController (req, res, next){
+  try {
+    const {error, value} = studentValidation.courseByStudent.validate(
+      {id: req.params.id},
+      {
+        abortEarly: true,
+      }
+    );
+    if (error) {
+      return res.send(error.details.map((err) => err.message));
+    } else {
+      const studentId = Number(value.id);
+      const data = await studentService.coursesByStudent(studentId);
+      res.send(data);
+    }
+  } catch (error) {}
+}
+
+module.exports = { studentsController, addStudentController, updatedStudentController, deleteStudentController, enrollStudentController, courseByStudentController };
