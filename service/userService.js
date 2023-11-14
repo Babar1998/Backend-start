@@ -1,4 +1,5 @@
-  const {models} = require("../models")
+  const {models} = require("../models");
+  const bcrypt = require("bcryptjs");
   //Db operations
   module.exports = {
     getUser: async () => {
@@ -6,6 +7,7 @@
       return users;
     },
     addUser: async(data) => {
+      data.password = bcrypt.hashSync(data.password, 10);
       const users = await models.user.create(data);
       console.log(users);
       return users;
