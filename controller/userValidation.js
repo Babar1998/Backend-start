@@ -7,11 +7,11 @@ module.exports={
         password: joi.string().required(),
     }),
     deleteUser: joi.object().keys({
-        id: joi.number(),
+        userId: joi.number(),
         email: joi.string().email()
     }),
     updatedUser: joi.object().keys({
-        id: joi.number().required(),
+        userId: joi.number().required(),
         userName: joi.string(),
         email: joi.string().email(),
         password: joi.string(),
